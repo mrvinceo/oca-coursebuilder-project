@@ -7,6 +7,11 @@
     <meta charset="utf-8">
     {% block title %}
     {% endblock %}
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.0.7-master-0c659c2/angular-material.css'>
+
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.0-rc4/docs.css'>
 
     <!-- The following translated strings are used in activity-generic.js and should be
     declared before that file is imported. -->
@@ -124,7 +129,7 @@
         // TODO(nretallack): This duplicates code in
         // modules/dashboard/resources/js/view.js.
         function parseJson(s) {
-          var xssiPrefix = ")]}'";
+          var xssiPrefix = "";
           return JSON.parse(s.replace(xssiPrefix, ''));
         }
 
@@ -160,10 +165,10 @@
   </head>
 
   <body data-gcb-page-locale="{{ page_locale }}">
-
-    {{ html_hooks.insert('base.after_body_tag_begins') }}
-
-    <script>
+        {{ html_hooks.insert('base.after_body_tag_begins') }}
+    
+    
+       <script>
       // Course-Builder specific setup for Google Tag Manager.  Iff
       // Tag Managers is enabled, the values in the dataLayer list of
       // dicts is made available to Tag Manager macros.
@@ -194,8 +199,8 @@
         })(window,document,'script','dataLayer','{{ course_info.course.google_tag_manager_id }}');</script>
         <!-- End Google Tag Manager -->
     {% endif %}
-
-    <!-- ButterBar -->
+    
+       <!-- ButterBar -->
     <div class="gcb-butterbar-container">
       <div id="gcb-butterbar-top" class="gcb-butterbar" style="margin-top:50px" aria-live="polite">
         <p id="gcb-butterbar-message"></p>
@@ -251,14 +256,98 @@
     <!-- top section -->
     <div class="is-wrapper">
       <div class="gcb-aux">
-        {% block top_content %}{% endblock %}
+       
         {{ html_hooks.insert('base.after_top_content_ends') }}
 
         <!-- main section -->
-        {% block main_content %}{% endblock %}
+       
         {{ html_hooks.insert('base.after_main_content_ends') }}
       </div>
     </div>
+
+
+       <div ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="MyApp">
+
+         
+         <md-toolbar layout="row" style="min-height: 500px;" md-whiteframe="5">
+ 
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-disable-backdrop="" md-whiteframe="4">
+
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Syllabus</h1>
+
+      </md-toolbar>
+      <md-content layout-padding="" ng-controller="LeftCtrl">
+        <md-button ng-click="close()" class="md-primary" hide-gt-md="">
+          Close Sidenav Left
+        </md-button>
+        <p hide-md="" show-gt-md="">
+
+        </p>
+      </md-content>
+
+    </md-sidenav>
+
+    <md-content flex="" layout-padding="">
+
+      <div layout="column" layout-fill="" layout-align="top center">
+        <p>
+			MAIN CONTENT AREA \/
+        </p>
+
+ 		{% block top_content %}{% endblock %}
+		{% block main_content %}{% endblock %}
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+            Toggle left
+          </md-button>
+        </div>
+
+        <div>
+          <md-button ng-click="toggleRight()" ng-hide="isOpenRight()" class="md-primary">
+            Toggle right
+          </md-button>
+        </div>
+      </div>
+
+      <div flex=""></div>
+
+    </md-content>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Your Topics</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl" layout-padding="">
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput" ng-model="data" md-autofocus="">
+          </md-input-container>
+          </form>
+        <p>Some more text here</p>
+          <ul>
+            <li>Some</li>
+            <li>Bullet points</li>
+            <li>here...</li>
+          </ul>
+
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
+
+
+</div>
+    </div>
+
+ 
+
+ 
 
     <!-- footer section -->
     <div style="margin-top: 50px;" id="gcb-signature"></div>
@@ -331,5 +420,16 @@ gcb-debug-info-end //-->
         $(function(){ $("#page_uuid").attr("data-loaded", "true"); });
       </script>
     {% endif %}
+    
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc4/angular-material.min.js'></script>
+<script src='https://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js'></script>
+<script src="assets/lib/index.js"></script>
+<script src="assets/lib/index2.js"></script>
   </body>
 </html>
